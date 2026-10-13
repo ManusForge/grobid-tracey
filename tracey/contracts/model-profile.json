@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "project": "GROBID-fork",
+  "status": "candidate_not_executable",
+  "upstream": {
+    "repository": "https://github.com/grobidOrg/grobid",
+    "fork": "https://github.com/ManusForge/grobid-tracey",
+    "commit": "c71ebff51e4d2a8257885458daeedede82698d43",
+    "declared_version": "0.9.2-SNAPSHOT"
+  },
+  "family": "wapiti-crf",
+  "flavor": "default",
+  "consolidation": {
+    "header": 0,
+    "citation": 0,
+    "funder": 0
+  },
+  "models": [
+    {
+      "id": "segmentation",
+      "path": "grobid-home/models/segmentation/model.wapiti",
+      "bytes": 62133818,
+      "sha256": "a0c078d734d74bd1a95582ceedb304cbb9a307dd4ab37f30bc8a38f782134590",
+      "features": "grobid-core/src/main/java/org/grobid/core/features/FeaturesVectorSegmentation.java"
+    },
+    {
+      "id": "fulltext",
+      "path": "grobid-home/models/fulltext/model.wapiti",
+      "bytes": 38545642,
+      "sha256": "cfeecab26bab01eb05389662f2cdd38d25d58040a0b70299750c01f8099db1f7",
+      "features": "grobid-core/src/main/java/org/grobid/core/features/FeaturesVectorFulltext.java"
+    },
+    {
+      "id": "reference-segmenter",
+      "path": "grobid-home/models/reference-segmenter/model.wapiti",
+      "bytes": 12167531,
+      "sha256": "cf51216fc62acbfd0dacff568c5f9bc99a9689e3c6e01af0307b939bf4d1fe8c",
+      "features": "grobid-core/src/main/java/org/grobid/core/features/FeaturesVectorReferenceSegmenter.java"
+    },
+    {
+      "id": "citation",
+      "path": "grobid-home/models/citation/model.wapiti",
+      "bytes": 22103761,
+      "sha256": "5f17697840c78fa9595119aa7f579f5e9576fbc879477c47507a5f9a6bc264f5",
+      "features": "grobid-core/src/main/java/org/grobid/core/features/FeaturesVectorCitation.java"
+    },
+    {
+      "id": "name-citation",
+      "path": "grobid-home/models/name/citation/model.wapiti",
+      "bytes": 481363,
+      "sha256": "67611eac7ce7aa1f945d28282ff0d36aabd71be9dc751323d8f18e9165845d94",
+      "features": "grobid-core/src/main/java/org/grobid/core/features/FeaturesVectorName.java"
+    },
+    {
+      "id": "date",
+      "path": "grobid-home/models/date/model.wapiti",
+      "bytes": 111422,
+      "sha256": "2bf0c901dd8cf8e2201467c3fa22d480b03e789420fce8056ee97efc8e637f98",
+      "features": "grobid-core/src/main/java/org/grobid/core/features/FeaturesVectorDate.java"
+    }
+  ],
+  "upstream_lexicon_tree": {
+    "path": "grobid-home/lexicon",
+    "git_tree_sha1": "f8b58543ecac88dc3879dae5ea8a647c7203b017",
+    "status": "source_inventory_only; reached files need individual SHA-256 records"
+  },
+  "decoder_candidate": {
+    "repository": "https://github.com/kermitt2/Wapiti",
+    "commit": "a9c25d2bcccd60f1a54a7019689bd5229e866f00",
+    "source_reuse": "required_before_replacement",
+    "bundled_binary_equivalence": "unverified",
+    "ios_support": "unverified",
+    "wasm_support": "unverified",
+    "artifact_sha256": null
+  },
+  "feature_contract_sha256": null,
+  "tokenizer_contract_sha256": null,
+  "resource_closure_sha256": null,
+  "algorithm_identity": null,
+  "closure_verified": false,
+  "runtime_profile_id": null,
+  "activation_allowed": false,
+  "required_resource_categories": [
+    "all reached lexical dictionaries and matching resources",
+    "contextual normalization and analyzer rules",
+    "feature schemas, templates, sequence boundaries and label order",
+    "reference/name/date parsing and fulltext dependency order",
+    "graphics proximity and bibliography-derived features",
+    "verified decoder source, compiler settings and target artifact"
+  ],
+  "resource_budget_status": "pending_target_measurement",
+  "delivery": {
+    "owner": "existing Tracey build and asset adapters",
+    "max_static_asset_file_bytes": 26214400,
+    "transport": "ordered immutable chunks where necessary; verify original whole-file model SHA-256",
+    "chunk_inventory": null,
+    "status": "not_packaged"
+  }
+}

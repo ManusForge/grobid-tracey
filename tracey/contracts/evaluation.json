@@ -1,0 +1,295 @@
+{
+  "schema": 1,
+  "project": "GROBID-fork",
+  "status": "specified_not_run",
+  "dataset": {
+    "repository": "sciencialab/grobid-evaluation",
+    "revision": "ae554101b0d967a309bd3739e189b745600d8ae5",
+    "article_pairs": 5927,
+    "selected_files": 11854,
+    "selected_bytes": 15496311964,
+    "collections": [
+      {
+        "name": "PMC_sample_1943",
+        "article_pairs": 1943
+      },
+      {
+        "name": "biorxiv-10k-test-2000",
+        "article_pairs": 2000
+      },
+      {
+        "name": "PLOS_1000",
+        "article_pairs": 1000
+      },
+      {
+        "name": "eLife_984",
+        "article_pairs": 984
+      }
+    ],
+    "dataset_card_license": "CC-BY-4.0",
+    "article_notices": "retain original notices; do not relabel every PDF",
+    "gold_roles": [
+      "publisher JATS XML",
+      "publisher NLM XML"
+    ],
+    "excluded_gold": [
+      "generated GROBID TEI",
+      "PDFX conversion",
+      "HTML copies"
+    ],
+    "corpus_download_status": "not_downloaded"
+  },
+  "baseline": {
+    "commit": "c71ebff51e4d2a8257885458daeedede82698d43",
+    "family": "same candidate Wapiti CRF weights",
+    "flavor": "default",
+    "consolidation": {
+      "header": 0,
+      "citation": 0,
+      "funder": 0
+    },
+    "file_selection": "explicit pinned list; no random fileRatio selection",
+    "locale_jdk_pdfalto_flags": "record before first run",
+    "external_metadata": "disabled",
+    "published_DL_glutton_scores": "separate context; not this baseline"
+  },
+  "download_policy": {
+    "root": "external development cache, outside source and release packages",
+    "url": "https://huggingface.co/datasets/sciencialab/grobid-evaluation/resolve/<revision>/<path>",
+    "pdf_verification": "size and LFS content SHA-256; a pointer blob hash is not the PDF hash",
+    "gold_verification": "size, Git blob SHA-1 and recorded SHA-256",
+    "write": "temporary verified file then atomic rename",
+    "failure": "keep verified cache; list missing or damaged files; no silent skipping"
+  },
+  "product_policy": {
+    "max_pdf_bytes": 41943040,
+    "max_pages": 600,
+    "deadline_ms": 40000,
+    "max_result_bytes": 4194304,
+    "max_references": 10000,
+    "max_occurrences": 50000,
+    "max_concurrent": 1,
+    "known_pdf_byte_limit_rejections": 7,
+    "page_limit_rejections": "unmeasured until PDF admission",
+    "denominators": "record total, admitted, rejected, scored and missing-label cases separately"
+  },
+  "smoke": {
+    "purpose": "wiring and parity checks; not representative accuracy acceptance",
+    "article_count": 7,
+    "bytes": 8698547,
+    "cases": [
+      {
+        "article": "PMC_sample_1943/AAPS_J_2011_Mar_9_13(2)_230-239",
+        "purpose": "Numeric citation targets; includes unstructured bibliography gold fields.",
+        "files": [
+          {
+            "path": "PMC_sample_1943/AAPS_J_2011_Mar_9_13(2)_230-239/12248_2011_Article_9260.nxml",
+            "role": "gold",
+            "bytes": 71944,
+            "git_blob_sha1": "22a42105f3428e8a1375ee8538436451fb2d24b5",
+            "sha256": "77eeca3f68eb83c0ec597741d1c35eb746c4a382015e1fd49e8c82aa6e107efc"
+          },
+          {
+            "path": "PMC_sample_1943/AAPS_J_2011_Mar_9_13(2)_230-239/12248_2011_Article_9260.pdf",
+            "role": "pdf",
+            "bytes": 327071,
+            "git_blob_sha1": "0b5240d3b2100e6a3d490fed1075d5f8c8fedbcc",
+            "sha256": "3097ebf5c569e2dd3d3173ebb7bb6acb4b05f32a8254e4e683b3d66eb164627d"
+          }
+        ]
+      },
+      {
+        "article": "biorxiv-10k-test-2000/002485v1",
+        "purpose": "Numeric preprint citations.",
+        "files": [
+          {
+            "path": "biorxiv-10k-test-2000/002485v1/002485v1.pdf",
+            "role": "pdf",
+            "bytes": 1347192,
+            "git_blob_sha1": "2ee9831ee678fa83f6090e2b4a2e81254bb20507",
+            "sha256": "f5c2c16e190a39ae6e00b4b1486c46602b1bf740337c802660ed0d45822399df"
+          },
+          {
+            "path": "biorxiv-10k-test-2000/002485v1/002485v1.xml",
+            "role": "gold",
+            "bytes": 84435,
+            "git_blob_sha1": "a7eb1fcf2009ebe96f065ef9a39389c04df9d5b4",
+            "sha256": "ceed88be62b44e0b7b45b50c3ff793409c84fe24243d5459afee6e4586bae4e2"
+          }
+        ]
+      },
+      {
+        "article": "biorxiv-10k-test-2000/002634v1",
+        "purpose": "Author-year preprint citations.",
+        "files": [
+          {
+            "path": "biorxiv-10k-test-2000/002634v1/002634v1.pdf",
+            "role": "pdf",
+            "bytes": 1470835,
+            "git_blob_sha1": "0e2ef179ba2ee27b11cb30d81bb5afa8d33c00f2",
+            "sha256": "9fb5390decb36838805471cc996c78f7f7bbaf4e4cd28631a600948688e2afc4"
+          },
+          {
+            "path": "biorxiv-10k-test-2000/002634v1/002634v1.xml",
+            "role": "gold",
+            "bytes": 36946,
+            "git_blob_sha1": "85535364ba66104625a2a8c781b9e4b5ef9a00bd",
+            "sha256": "af2991b53ff6c0fb8437644c3df6cb180eff0f851358795acfac3ec18a1f0ff1"
+          }
+        ]
+      },
+      {
+        "article": "PLOS_1000/pcbi.1000278",
+        "purpose": "PLOS numeric citation targets.",
+        "files": [
+          {
+            "path": "PLOS_1000/pcbi.1000278/journal.pcbi.1000278.xml",
+            "role": "gold",
+            "bytes": 93888,
+            "git_blob_sha1": "026315e0d9b0d85693b40ac0e1e7b2dae69ac96a",
+            "sha256": "7bc4281049ac5b963c79764e26dde0dbaa36cfb52a6dd75bd0c8d0a77833fa29"
+          },
+          {
+            "path": "PLOS_1000/pcbi.1000278/pcbi.1000278.pdf",
+            "role": "pdf",
+            "bytes": 295722,
+            "git_blob_sha1": "1c41e67d48204281e7863f7cfbd552d93f5eeb32",
+            "sha256": "5b1ad638b2fd71cb77179091f16a9a3b247a808a87cf0315d108af86e1ed2b11"
+          }
+        ]
+      },
+      {
+        "article": "eLife_984/00013",
+        "purpose": "eLife author-year citation targets.",
+        "files": [
+          {
+            "path": "eLife_984/00013/elife-00013-v1.pdf",
+            "role": "pdf",
+            "bytes": 1448597,
+            "git_blob_sha1": "661c358e1ed8d1372434e7703d94a14e1e6cd728",
+            "sha256": "e30da20db1e6110506ef7cf40f0edac86adb5a617d7379133e6510342c3085dc"
+          },
+          {
+            "path": "eLife_984/00013/elife-00013-v1.xml",
+            "role": "gold",
+            "bytes": 159627,
+            "git_blob_sha1": "ac2e15db0274a1c9988414cfa20c5bc770a67735",
+            "sha256": "35bcea02047b6036bddc6f853760c4f9875e92356e671e7676fc96a181670e05"
+          }
+        ]
+      },
+      {
+        "article": "PLOS_1000/pbio.0020278",
+        "purpose": "Negative case: no bibliography and no bibliography cross-references.",
+        "files": [
+          {
+            "path": "PLOS_1000/pbio.0020278/journal.pbio.0020278.xml",
+            "role": "gold",
+            "bytes": 7743,
+            "git_blob_sha1": "a7db4b3771d0875a641aaf8ac6a08f9be5258425",
+            "sha256": "16be7cb1a7a3e7409cec945e67baeee1907541028367d92ec7105b504c1f354f"
+          },
+          {
+            "path": "PLOS_1000/pbio.0020278/pbio.0020278.pdf",
+            "role": "pdf",
+            "bytes": 543499,
+            "git_blob_sha1": "45767c2c428c77baf94ab13dc78ab6f03f74610f",
+            "sha256": "059939da42a4c14e2ebc548a94a365e3e419ac356b8b968bdae5cab3cc41b4ab"
+          }
+        ]
+      },
+      {
+        "article": "PLOS_1000/pbio.0040278",
+        "purpose": "Partial gold case: bibliography exists but no machine-readable bibliography cross-references.",
+        "files": [
+          {
+            "path": "PLOS_1000/pbio.0040278/journal.pbio.0040278.xml",
+            "role": "gold",
+            "bytes": 37216,
+            "git_blob_sha1": "edfbfd44e2ff41e4a6aeffae15a9a0ddc7b5ea3f",
+            "sha256": "dff63a6872e488898916497d65684a71fec49ac328a2b62eeea82f86d3526d1c"
+          },
+          {
+            "path": "PLOS_1000/pbio.0040278/pbio.0040278.pdf",
+            "role": "pdf",
+            "bytes": 2773832,
+            "git_blob_sha1": "ed1dbcab83d159c256210c0da945d8f398dc6699",
+            "sha256": "3878add29bb2fd92b9a0a1c9b32b3658f72c3ac746b42cac6fb0dfa40d84d3a3"
+          }
+        ]
+      }
+    ]
+  },
+  "gates": [
+    {
+      "id": "G0",
+      "name": "Source and contract identity",
+      "acceptance": "Check pinned source, model SHA-256, complete resources, notices, explicit files and trustworthy manifests.",
+      "status": "not_run"
+    },
+    {
+      "id": "G1",
+      "name": "Same-feature inference parity",
+      "acceptance": "Require equal labels for every row and sequence using unchanged models and fixed upstream feature inputs; include tie cases.",
+      "status": "not_run"
+    },
+    {
+      "id": "G2",
+      "name": "Same-layout feature parity",
+      "acceptance": "Require byte-identical serialized feature columns, normalization, tokenization and bins for identical upstream layout inputs.",
+      "status": "not_run"
+    },
+    {
+      "id": "G3",
+      "name": "Assembly and matching parity",
+      "acceptance": "Require equal parsed fields and target groups on identical labels, marker records and bibliography inputs.",
+      "status": "not_run"
+    },
+    {
+      "id": "G4",
+      "name": "PDF extraction and gold accuracy",
+      "acceptance": "Report each corpus separately. Candidate precision, recall and F1 must not regress against the same-configuration baseline for scored reference fields and citation targets.",
+      "status": "not_run"
+    },
+    {
+      "id": "G5",
+      "name": "Original-page geometry",
+      "acceptance": "Use reviewed PDF annotations and trusted reader interactions for crops, rotation, wrapping, groups and range targets.",
+      "status": "not_run"
+    },
+    {
+      "id": "G6",
+      "name": "Target resources and cancellation",
+      "acceptance": "Measure cold/warm latency, peak memory, downloads, reading responsiveness, cancellation acknowledgement and forced termination on each target. Accepted device budgets are required.",
+      "status": "not_run"
+    },
+    {
+      "id": "G7",
+      "name": "Tracey integration and release",
+      "acceptance": "Verify one PDF owner and cache and occurrence identities. Check stale work, guarded trace actions and retained reader tools. Compare native/web and Git/package identities.",
+      "status": "not_run"
+    }
+  ],
+  "report_contract": {
+    "required": [
+      "source/profile/artifact/dataset identities",
+      "explicit files and verified local hashes",
+      "target, hardware, compiler and runtime",
+      "configuration and external-call audit",
+      "stage comparisons and first differences",
+      "per-corpus per-field precision, recall, F1 and denominators",
+      "missing XML links and range interiors",
+      "unresolved, ambiguous and incorrect-target counts",
+      "geometry reviewed-annotation identity and results",
+      "cold/warm p50/p95, peak memory, transfer and download sizes",
+      "reading responsiveness and cancellation/termination results",
+      "every limit rejection, failure and skipped unsupported case"
+    ],
+    "same_layout_parity_required": true,
+    "same_features_label_parity_required": true,
+    "allowed_unexplained_gold_regressions": 0,
+    "geometry_gold_from_publisher_XML": false,
+    "accepted_target_budgets": null,
+    "activation_allowed": false
+  }
+}
