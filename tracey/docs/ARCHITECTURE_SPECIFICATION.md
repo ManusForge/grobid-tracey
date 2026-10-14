@@ -7,6 +7,7 @@ Status: planned architecture; production code is not present.
 
 The [activity specification](SPECIFICATION.md) controls behavior.
 The [API specification](API_SPECIFICATION.md) defines the public contracts.
+The [framework API](FRAMEWORK_API_SPECIFICATION.md) defines experimental stages, composition, execution and scoring.
 The [compatibility review](MODEL_COMPATIBILITY.md) identifies required reuse checks.
 
 Keep upstream source and assets in their current locations.
@@ -48,12 +49,15 @@ tracey/
         pipeline/        # Stage order, bounds and cancellation
   native/
     wapiti/              # Verified source build and minimal portability changes
-  tools/
-    evaluation/
-      baseline/          # Fixed upstream Java execution
-      corpus/            # Pinned download and gold readers
-      compare/           # Stage and semantic comparisons
-      report/            # Results and denominator records
+  pipeline/
+    stages/              # Thin experiment adapters for supported operations
+    definitions/         # Named ordered compositions
+  experiments/           # Pinned inputs, trial schedules and run conditions
+  evaluation/
+    runner/              # One experiment execution owner
+    datasets/            # Candidate inputs and separate reference answers
+    metrics/             # Compatible task scoring and stage comparisons
+    reporting/           # Raw evidence, counts and comparison reports
   tests/
     contracts/
     features/
@@ -120,6 +124,9 @@ Evaluation may call both implementations. Production must not depend on evaluati
 | Evaluation | Fixed inputs and both outputs | Reproducible evidence | Scoring or reporting changes |
 
 No owner may also implement another owner's cache, catalogue identity or personal storage.
+Experiment adapters must use the framework contracts. They must not export every private model implementation.
+The experiment runner must not contain feature, matching or scoring rules.
+Reference answers must reach scoring through a separate input.
 Features must not load models. Matching must not request catalogue data.
 Inference must not select papers. The pipeline must not know the active trace.
 

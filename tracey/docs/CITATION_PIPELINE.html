@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>GROBID-fork · Citation pipeline</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #f5f7fa;
+      --surface: #ffffff;
+      --text: #172333;
+      --muted: #526172;
+      --line: #d7dfe8;
+      --accent: #175ca2;
+      --tint: #edf4fc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font: 17px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { max-width: 960px; margin: auto; padding: 48px 28px 64px; }
+    header { margin-bottom: 28px; }
+    .eyebrow { color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+    h1 { margin: 8px 0 16px; font-size: clamp(30px, 5vw, 46px); line-height: 1.15; }
+    h2 { margin: 0 0 8px; font-size: 21px; line-height: 1.35; }
+    h3 { margin: 0 0 8px; font-size: 18px; }
+    p { margin: 0 0 12px; }
+    a { color: var(--accent); text-underline-offset: .15em; }
+    .status { color: var(--muted); font-size: 14px; }
+    .boundary {
+      background: var(--tint);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px;
+      padding: 18px 22px;
+      margin: 24px 0 32px;
+    }
+    .boundary p:last-child { margin-bottom: 0; }
+    .flow { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+    .flow > li {
+      position: relative;
+      counter-increment: step;
+      margin: 0 0 20px 22px;
+      padding: 23px 26px 23px 44px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      break-inside: avoid;
+    }
+    .flow > li::before {
+      content: counter(step);
+      position: absolute;
+      top: 20px;
+      left: -23px;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 4px solid var(--background);
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-weight: 750;
+    }
+    .flow > li:not(:last-child)::after {
+      content: "↓";
+      position: absolute;
+      bottom: -25px;
+      left: 20px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+    .io { display: grid; grid-template-columns: 62px 1fr; gap: 4px 12px; margin: 16px 0 0; font-size: 15px; }
+    dt { color: var(--muted); font-weight: 650; }
+    dd { margin: 0; overflow-wrap: anywhere; }
+    .table-wrap { overflow-x: auto; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    th, td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 650; }
+    code { font-size: .9em; overflow-wrap: anywhere; }
+    .output { margin-top: 32px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+    footer { margin-top: 28px; color: var(--muted); font-size: 14px; }
+    @media (prefers-color-scheme: dark) {
+      :root { --background: #111923; --surface: #182330; --text: #e5edf6; --muted: #adbdce; --line: #344456; --accent: #82baff; --tint: #192f47; }
+      .flow > li::before { color: #102033; }
+    }
+    @media (max-width: 520px) {
+      main { padding: 28px 18px 40px; }
+      body { font-size: 16px; }
+      .flow > li { padding: 20px 16px 20px 30px; }
+      .io { grid-template-columns: 1fr; gap: 2px; }
+      .io dd + dt { margin-top: 7px; }
+      .boundary, .output { padding: 18px; }
+      th, td { padding: 10px 8px; }
+    }
+    @media print {
+      :root { color-scheme: light; --background: white; --surface: white; --text: black; --muted: #333; --line: #bbb; --accent: #174f80; --tint: white; }
+      main { max-width: none; padding: 0; }
+      body { font-size: 11pt; }
+      .flow > li { margin-bottom: 16px; }
+      .table-wrap { overflow: visible; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">GROBID-FORK · PLANNED FLOW</div>
+    <h1>From a PDF tap to the cited paper</h1>
+    <p>The pipeline starts when the reader taps a citation. It returns the matched paper, candidate probabilities and match evidence.</p>
+    <p class="status">13 October 2026 · Planned behavior · Implementation and evaluation are pending.</p>
+  </header>
+
+  <section class="boundary" aria-label="Pipeline boundary">
+    <p><strong>Input:</strong> the current PDF, the page, the tap position and the known paper references.</p>
+    <p><strong>Output:</strong> a verified paper or an unresolved result, with the candidate table and source evidence.</p>
+  </section>
+
+  <ol class="flow" aria-label="Citation pipeline stages">
+    <li>
+      <h2>Extract the text under the tap</h2>
+      <p>Use the existing PDF reader to read the tapped text and nearby text. Keep the original text, page and position.</p>
+      <dl class="io">
+        <dt>Input</dt><dd>PDF identity, page and tap position.</dd>
+        <dt>Output</dt><dd>Text and its source position.</dd>
+      </dl>
+    </li>
+
+    <li>
+      <h2>Check the citation candidate</h2>
+      <p>Check the text and nearby context for a citation. Stop for ordinary text, reading gestures or taps outside text.</p>
+      <p>A bracketed number alone is not proof of a citation. Do not start model processing or a database search for a rejected tap.</p>
+      <dl class="io">
+        <dt>Input</dt><dd>Text and tap evidence.</dd>
+        <dt>Output</dt><dd>An admitted citation candidate, or a stopped action.</dd>
+      </dl>
+    </li>
+
+    <li>
+      <h2>Find the bibliography entry</h2>
+      <p>Use GROBID to find the bibliography and read its entries. Match the citation label, authors or year to those entries.</p>
+      <p>Use the labels from the displayed PDF. Database order must not change this mapping.</p>
+      <p>Keep the matched entry and its source text. Reuse the extracted bibliography for later taps.</p>
+      <dl class="io">
+        <dt>Input</dt><dd>Citation candidate and current PDF.</dd>
+        <dt>Output</dt><dd>Candidate bibliography entries and their match evidence.</dd>
+      </dl>
+    </li>
+
+    <li>
+      <h2>Collect candidate paper records</h2>
+      <p>Compare the bibliography entry with the known paper references. Use identifiers, title, authors and year to find candidate records.</p>
+      <p>If the paper is not in that list, use the existing catalogue lookup to retrieve its metadata.</p>
+      <dl class="io">
+        <dt>Input</dt><dd>Bibliography entry and known paper references.</dd>
+        <dt>Output</dt><dd>Candidate paper records and their metadata sources.</dd>
+      </dl>
+    </li>
+
+    <li>
+      <h2>Verify the candidate papers</h2>
+      <p>Check identifiers, title, authors and year. Use semantic similarity to compare independent descriptions of the reference and each candidate.</p>
+      <p>A high similarity score must not override conflicting identifiers. Metadata copied from the reference is not independent verification.</p>
+      <dl class="io">
+        <dt>Input</dt><dd>Bibliography entry and candidate metadata.</dd>
+        <dt>Output</dt><dd>Identifier checks, similarity scores and conflicts.</dd>
+      </dl>
+    </li>
+
+    <li>
+      <h2>Build the candidate probability table</h2>
+      <p>Rank the candidates from the match evidence and verification results. Return the estimated probability for each candidate.</p>
+      <p>Include a “No known match” result. Do not force a match when the correct paper is missing.</p>
+      <p>Keep probability and similarity as separate values. If the probability method is not verified, report all probabilities as unavailable.</p>
+      <dl class="io">
+        <dt>Input</dt><dd>Candidate records and verification evidence.</dd>
+        <dt>Output</dt><dd>Ranked candidates and an accepted or unresolved match.</dd>
+      </dl>
+    </li>
+
+    <li>
+      <h2>Add a missing paper and return the result</h2>
+      <p>If the paper exists but the known reference list omits it, record the PDF-supported reference separately.</p>
+      <p>If the paper is missing, add its record only after verification. Reuse an existing matching record to prevent duplicates.</p>
+      <p>If the match remains uncertain, return an unresolved result. Do not add a guessed paper.</p>
+      <p>Return the verified paper to the existing trace action. Keep the source citation and bibliography entry as evidence.</p>
+      <dl class="io">
+        <dt>Input</dt><dd>Accepted or unresolved match and the current catalogue state.</dd>
+        <dt>Output</dt><dd>Existing or added paper, reference evidence and the final result.</dd>
+      </dl>
+    </li>
+  </ol>
+
+  <section class="output" aria-labelledby="table-heading">
+    <h2 id="table-heading">Candidate table fields</h2>
+    <p>Use one table for each bibliography entry selected by the citation.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Field</th><th scope="col">Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>paper_id</code></td><td>The candidate paper identity, or no identity for “No known match”.</td></tr>
+          <tr><td><code>title</code></td><td>The candidate title from its metadata source.</td></tr>
+          <tr><td><code>probability</code></td><td>The estimated match probability, or an unavailable value.</td></tr>
+          <tr><td><code>semantic_similarity</code></td><td>The separate similarity score and its method.</td></tr>
+          <tr><td><code>identifier_check</code></td><td>Agreement, conflict or missing identifiers.</td></tr>
+          <tr><td><code>decision</code></td><td>Accepted, unresolved or no known match.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The probability table must identify its method. Available probabilities must total one, including “No known match”.</p>
+  </section>
+
+  <footer>
+    <p>Reuse GROBID’s existing models and required processing stages. No new GROBID model training is planned.</p>
+    <p>Evaluate correct links, wrong links, missed citations, false activations and execution time before accepting the flow.</p>
+    <p>Reference: <a href="https://grobid.readthedocs.io/en/latest/Principles/">GROBID processing architecture</a>.</p>
+  </footer>
+</main>
+</body>
+</html>

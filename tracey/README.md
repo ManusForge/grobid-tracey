@@ -12,9 +12,11 @@ The implementation branch is `feat/tracey-citation-mapping`.
 
 Read these documents before implementation:
 
+- [Minimal citation pipeline](docs/CITATION_PIPELINE.html)
 - [Activity specification](docs/SPECIFICATION.md)
 - [Architecture specification](docs/ARCHITECTURE_SPECIFICATION.md)
 - [API specification](docs/API_SPECIFICATION.md)
+- [Experiment framework API specification](docs/FRAMEWORK_API_SPECIFICATION.md)
 - [Model compatibility and reuse review](docs/MODEL_COMPATIBILITY.md)
 - [Candidate model profile](contracts/model-profile.json)
 - [Evaluation contract](contracts/evaluation.json)

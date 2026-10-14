@@ -5,6 +5,11 @@ Scope: `tracey/crates/grobid-fork` inside this fork.
 Baseline: GROBID `0.9.2-SNAPSHOT`, commit `c71ebff51e4d2a8257885458daeedede82698d43`.
 The crate must have no Tracey dependency.
 
+The [experiment framework API](FRAMEWORK_API_SPECIFICATION.md) defines experimental composition and evaluation.
+Its named stage adapters extend the experiment boundary; model-specific implementations remain private.
+Complete-document rules below apply to `map_document`, not every experimental output.
+No experimental result establishes production acceptance.
+
 Read [requirements](SPECIFICATION.md), [architecture](ARCHITECTURE_SPECIFICATION.md), and [model compatibility](MODEL_COMPATIBILITY.md) with this contract.
 These documents must agree before implementation starts.
 The Rust declarations below specify interfaces; they are not source files.
